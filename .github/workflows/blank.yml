@@ -1,0 +1,20 @@
+name: first workflow  # Name of the GitHub Actions workflow
+
+on: push  # Triggers the workflow on every push to the repository
+
+jobs:
+  echo-ubuntu-runner:  # Name of the job
+    runs-on: ubuntu-latest  # This job runs on the latest Ubuntu runner
+
+    steps:  # List of steps to run in the job
+      - name: Checkout code  # Step 1: Name shown in GitHub UI
+        uses: actions/checkout@v4.2.2  # Uses the official GitHub action to check out the code
+
+      - name: Setup Java JDK  # Step 2: Name shown in GitHub UI
+        uses: actions/setup-java@v3.14.1  # Uses the official Java setup action
+        with:
+          java-version: '17'  # Specifies version 17 of Java
+          distribution: 'microsoft'  # Specifies Microsoft Build of OpenJDK
+
+      - name: Check java installed  # Step 3: Name shown in GitHub UI
+        run: echo java --version  # Runs a shell command to print the installed Java version
